@@ -31,7 +31,7 @@ const post = (proxies) => {
             })
             .proxy('http://' + proxy)
             .end((err, res) => {
-                console.log(err ? err : res.body);
+                process.send(res.body)
             });
         request
             .post("https://api.freshcoins.io/votes/3c96dfea-4f82-44aa-9db6-db2742590389")
@@ -50,9 +50,10 @@ const post = (proxies) => {
             })
             .proxy('http://' + proxy)
             .end((err, res) => {
-                console.log(err ? err : res.body);
+                process.send(res.body)
             });
     });
 }
 
 getProxy().then(proxies => post(proxies))
+
